@@ -8,12 +8,12 @@ const {addBook, addChapter, removeBook} = require('./wx')
 let location;
 
 const getChapter = async (bookId, title,href, order) => {
-   
+   console.log(href)
     if (!href){
         return
     }
     var res = await got({
-        url: href,
+        url: 'https://so.gushiwen.cn' + href,
         // responseType: "buffer"
     })
     var html = res.body
@@ -53,8 +53,8 @@ const getChapter = async (bookId, title,href, order) => {
     await addChapter({
         bookId:bookId, 
         name:title, 
-        original:origin, 
-        translation:trans, 
+        original: '<div>' + origin + '</div>', 
+        translation:'<div>' + trans + '</div>', 
         order:order
     })
   
@@ -76,11 +76,12 @@ const getBook = async (categoryId,path) => {
     }
     
 
-    // console.log(bookName)
+    console.log(bookName)
     var bookDesc = document.querySelector('.cont p').textContent
     // bookDesc = bookDesc.replace(/[0-9]+条名句/, '')
-    // console.log(bookDesc)
-    var bookId = await addBook({
+    console.log(bookDesc)
+    var bookId = ''
+        bookId = await addBook({
         categoryId:categoryId, 
         name:bookName, 
         author:'', 
@@ -99,8 +100,8 @@ const getBook = async (categoryId,path) => {
 }
 
 
-getBook('982133855ec3cf58010169fe0edb4ee3', 
-'https://so.gushiwen.org/guwen/book_46653FD803893E4FFD16AE8D25EE468A.aspx')
+getBook('6af880a55ec3cf2501113ad30daddb94', 
+'https://so.gushiwen.cn/guwen/book_46653FD803893E4FB66BB352A3FCC20D.aspx')
 
 // getChapter("1", "" , "https://so.gushiwen.cn/guwen/bookv_46653FD803893E4F18BE1020606DF928.aspx", 1)
 

@@ -1,9 +1,9 @@
 const fs = require("fs");
 const got = require('got');
 
-const appId = 'wx963ca82706f1e222'
-const appSecret = '4b57989f82c28fcb69776dfdc0d8d70d'
-const env = 'book-wvwch'
+const appId = 'wx5da44835dac1892e'
+const appSecret = '6e75d11d9964510f2d86218839ffe1c9'
+const env = 'book-e9sdz'
 
 let access_token = ''
 
